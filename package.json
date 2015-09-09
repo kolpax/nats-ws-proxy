@@ -1,0 +1,31 @@
+{
+  "name": "nats-ws-proxy",
+  "version": "0.0.1",
+  "description": "Nats websocket proxy.",
+  "main": "index.js",
+  "dependencies": {
+    "babel": "^5.8.23",
+    "nconf": "^0.7.2",
+    "ws": "^0.8.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "start": "babel-node -- src/index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/BoffinsDev/nats-ws-proxy.git"
+  },
+  "keywords": [
+    "nats",
+    "websocket",
+    "proxy"
+  ],
+  "author": "",
+  "license": "GPL-3.0",
+  "bugs": {
+    "url": "https://github.com/BoffinsDev/nats-ws-proxy/issues"
+  },
+  "homepage": "https://github.com/BoffinsDev/nats-ws-proxy#readme"
+}
