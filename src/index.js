@@ -23,11 +23,12 @@ console.log(`Listening on port ${port}`)
 wss.on('connection', ws => {
   const address = ws._socket.remoteAddress
   console.log(`[${address}] Client connected`)
-  ws._socket.setNoDelay(noDelay)
+  ws._socket && ws._socket.setNoDelay && ws._socket.setNoDelay(noDelay)
 
   // Connect to nats server, forward data to websocket
   const nats = net.connect(nconf.get('nats'))
   nats.setEncoding('utf8')
+  nats.setNoDelay(true)
   nats.on('data', data => {
     ws.send(data)
   })
