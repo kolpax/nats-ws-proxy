@@ -4,7 +4,7 @@ import nconf from 'nconf'
 
 nconf
   .argv()
-  .env()
+  .env('__')
   .defaults({
     port: 4223,
     noDelay: false,
