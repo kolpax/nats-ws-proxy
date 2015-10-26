@@ -20,6 +20,8 @@ const wss = new WebSocketServer({port})
 
 console.log(`Listening on port ${port}`)
 
+// TODO Fix crash bug when user disconnects too early
+
 wss.on('connection', ws => {
   const address = ws._socket.remoteAddress
   console.log(`[${address}] Client connected`)
@@ -30,7 +32,9 @@ wss.on('connection', ws => {
   nats.setEncoding('utf8')
   nats.setNoDelay(true)
   nats.on('data', data => {
-    ws.send(data)
+    if (ws.readyState === ws.OPEN) {
+      ws.send(data)
+    }
   })
   nats.on('connect', () => {
     console.log(`[${address}] Connected to nats`)
@@ -46,7 +50,9 @@ wss.on('connection', ws => {
 
   // Forward messages from client to nats server
   ws.on('message', message => {
-    nats.write(message)
+    if (nats.readyState === nats.OPEN) {
+      nats.write(message)
+    }
   })
   ws.on('close', () => {
     console.log(`[${address}] Client disconnected`)
