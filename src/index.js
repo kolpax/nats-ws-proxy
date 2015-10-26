@@ -20,8 +20,6 @@ const wss = new WebSocketServer({port})
 
 console.log(`Listening on port ${port}`)
 
-// TODO Fix crash bug when user disconnects too early
-
 wss.on('connection', ws => {
   const address = ws._socket.remoteAddress
   console.log(`[${address}] Client connected`)
